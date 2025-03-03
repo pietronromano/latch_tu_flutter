@@ -1,0 +1,279 @@
+{
+	"info": {
+		"_postman_id": "d45fb62c-0da2-4726-bba2-b91774e1f4ed",
+		"name": "LatchTUFlutter-Dev",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19462060"
+	},
+	"item": [
+		{
+			"name": "pair",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "dedc1934-b1c9-4bb1-a9f9-33b572802365",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://{{host}}/pair/[code]",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"pair",
+						"[code]"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "status",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "dedc1934-b1c9-4bb1-a9f9-33b572802365",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://{{host}}/status/{{account_id}}",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"status",
+						"{{account_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "unpair",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "dedc1934-b1c9-4bb1-a9f9-33b572802365",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://{{host}}/unpair/{{account_id}}",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"unpair",
+						"{{account_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "lock",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "dedc1934-b1c9-4bb1-a9f9-33b572802365",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://{{host}}/lock/{{account_id}}",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"lock",
+						"{{account_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "unlock",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "dedc1934-b1c9-4bb1-a9f9-33b572802365",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://{{host}}/unlock/{{account_id}}",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"unlock",
+						"{{account_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "history",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "dedc1934-b1c9-4bb1-a9f9-33b572802365",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://{{host}}/history/{{account_id}}",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"history",
+						"{{account_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "totp_create",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "dedc1934-b1c9-4bb1-a9f9-33b572802365",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://{{host}}/totp/create/{{account_id}}",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"totp",
+						"create",
+						"{{account_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "operation",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "dedc1934-b1c9-4bb1-a9f9-33b572802365",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://{{host}}/operation/{{account_id}}",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"operation",
+						"{{account_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "webhook",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"t\":1457913600,\n   \"accounts\":{\n     \"ACCOUNT_ID1\":[\n                {\n                 \"type\":\"UPDATE FROM LATCH\",\n                 \"id\":\"APP_OR_OPERATION_ID | GLOBAL_LATCH\",\n                 \"source\":\"USER_UPDATE | DEVELOPER_UPDATE\",\n                 \"new_status\":\"on | off | interval\"\n                }\n     ],\n     \"ACCOUNT_ID2\":[\n                {\n                 \"type\":\"UPDATE2\",\n                 \"id\":\"APP_OR_OPERATION_ID | GLOBAL_LATCH\",\n                 \"source\":\"USER_UPDATE | DEVELOPER_UPDATE\",\n                 \"new_status\":\"on | off | interval\"\n                }\n     ]\n   }\n }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{wshost}}/webhook",
+					"host": [
+						"{{wshost}}"
+					],
+					"path": [
+						"webhook"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "webhook challenge",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"t\":1457913600,\n   \"accounts\":{\n     \"ACCOUNT_ID1\":[\n                {\n                 \"type\":\"UPDATE FROM LATCH\",\n                 \"id\":\"APP_OR_OPERATION_ID | GLOBAL_LATCH\",\n                 \"source\":\"USER_UPDATE | DEVELOPER_UPDATE\",\n                 \"new_status\":\"on | off | interval\"\n                }\n     ],\n     \"ACCOUNT_ID2\":[\n                {\n                 \"type\":\"UPDATE2\",\n                 \"id\":\"APP_OR_OPERATION_ID | GLOBAL_LATCH\",\n                 \"source\":\"USER_UPDATE | DEVELOPER_UPDATE\",\n                 \"new_status\":\"on | off | interval\"\n                }\n     ]\n   }\n }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{wshost}}/webhook?challenge=challenge123",
+					"host": [
+						"{{wshost}}"
+					],
+					"path": [
+						"webhook"
+					],
+					"query": [
+						{
+							"key": "challenge",
+							"value": "challenge123"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
