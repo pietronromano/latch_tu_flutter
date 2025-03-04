@@ -41,6 +41,7 @@ class _NewItemState extends State<NewItem> {
             'name': _enteredName,
             'hours': _enteredHours,
             'building': _selectedBuilding.title,
+            'accountId': globals.accountId
           },
         ),
       );
