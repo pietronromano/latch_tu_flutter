@@ -1,7 +1,9 @@
-# latch_tu_flutter
+# Latch tu Flutter
 Repo for the tu Latch Innovation Contest
 
 *Hacked by:* Pietro Romano, Copyright 2025
+
+<br/>
 
 # Structure of this Repo
 This repo has the following main sections:
@@ -23,10 +25,10 @@ az webapp up --runtime PYTHON:3.9 --sku B1 --logs --name <GLOBALLY UNIQUE APP NA
 az webapp config set --startup-file "gunicorn -w 2 -k uvicorn.workers.UvicornWorker -b 0.0.0.0:8000 main:app" --name <GLOBALLY UNIQUE APP NAME>   --resource-group  latchtuflutter-rg
 ```
 
-The following system variables need to be configured in the Web App Settings:
-- API_KEY: key for authorizing calls to the API, used by the Flutter app
-- APP_ID: the tu Latch Application ID
-- SECRET_KEY = the tu Latch Secret
+The following system variables need to be configured in the Web App Settings -> Environment Variables:
+- `API_KEY`: key for authorizing calls to the API, used by the Flutter app
+- `APP_ID`: the tu Latch Application ID
+- `SECRET_KEY`: the tu Latch Secret
 
 <br/>
 
