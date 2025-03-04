@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
+import 'package:latch_tu_flutter_app/globals.dart' as globals;
 
 class WebHookScreen extends StatefulWidget {
   const WebHookScreen({super.key});
@@ -11,9 +12,10 @@ class WebHookScreen extends StatefulWidget {
 class _WebHookScreenState extends State<WebHookScreen> {
   final TextEditingController _controller = TextEditingController();
 
+  //final WebSocketChannel _channel = globals.channel;
   final WebSocketChannel _channel =
-      //   WebSocketChannel.connect(Uri.parse('wss://${globals.wsURL}/ws'));
-      WebSocketChannel.connect(Uri.parse('ws://localhost:8001/ws'));
+      WebSocketChannel.connect(Uri.parse('wss://${globals.wsURL}/ws'));
+  //    WebSocketChannel.connect(Uri.parse('ws://localhost:8001/ws'));
   // PUBLIC TESTER:  WebSocketChannel.connect(Uri.parse('wss://echo.websocket.events'));
 
   @override

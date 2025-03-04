@@ -1,3 +1,5 @@
+import 'package:web_socket_channel/web_socket_channel.dart';
+
 String firebaseURL =
     'latch-tu-flutter-default-rtdb.europe-west1.firebasedatabase.app';
 
@@ -8,3 +10,6 @@ String apiKeyHeader = 'x-api-key';
 String wsURL = 'latchtuflutterWS.azurewebsites.net';
 
 String accountId = '';
+
+final WebSocketChannel channel =
+    WebSocketChannel.connect(Uri.parse('wss://$wsURL/ws'));
