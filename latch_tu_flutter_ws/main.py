@@ -1,11 +1,10 @@
 '''
 Websockets sample for FastAPI
 FastAPI handles both Websockets routes (via Starlette wrapper) and HTML responses
-
 https://github.com/Azure/app-service-linux-docs/blob/master/HowTo/WebSockets/use_websockets_with_fastapi.md
 '''
 
-from fastapi import FastAPI, WebSocket, Request, Depends
+from fastapi import FastAPI, WebSocket, Request
 from fastapi.responses import HTMLResponse, PlainTextResponse
 from connections import manager
 import uvicorn
@@ -41,6 +40,7 @@ html = """
         ws.close();
       }
 
+      //ws = new WebSocket('ws://localhost:8001/ws');
       ws = new WebSocket('wss://latchtuflutterws.azurewebsites.net/ws');
       ws.onopen = () => {
         console.log('Connection opened!');
@@ -67,7 +67,6 @@ html = """
   })();
 </script>
 """
-
 
 @app.get("/")
 async def get():

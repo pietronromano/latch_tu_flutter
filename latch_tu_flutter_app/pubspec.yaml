@@ -39,7 +39,7 @@ dependencies:
   localstorage: ^5.0.0
   shared_preferences: ^2.5.2
   web_socket_channel: ^3.0.2
-  qr_code_vision: ^0.1.2
+
 
 dev_dependencies:
   flutter_test:
