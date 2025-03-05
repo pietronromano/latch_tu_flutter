@@ -62,7 +62,7 @@ docker run -p 8001:8001 latchtuflutter  --name latchtuflutter
 
 ## Azure Container Registry:
 ```
-az acr login -n latchtuflutter  -u latchtuflutter -p <pwd>
+az acr login -n latchtuflutter
 docker tag latchtuflutter latchtuflutter.azurecr.io/latchtuflutter:v1
 docker push latchtuflutter.azurecr.io/latchtuflutter:v1
 ```
