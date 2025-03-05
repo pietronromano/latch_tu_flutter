@@ -11,9 +11,8 @@ import uvicorn
 
 app = FastAPI()
 
-# FOR LOCAL TESTING ONLY
-# Update websockets url (ws = new WebSocket('ws://localhost:8001/ws');) 
-# to: wss://latchtuflutterws.azurewebsites.net/ws
+# Websockets url: local (ws = new WebSocket('ws://localhost:8001/ws');) 
+# Azure: wss://latchtuflutterws.azurewebsites.net/ws
 html = """
 <h1>Real Time Messaging</h1>
 <pre id="messages" style="height: 400px; overflow: scroll"></pre>
@@ -40,7 +39,6 @@ html = """
         ws.close();
       }
 
-      //ws = new WebSocket('ws://localhost:8001/ws');
       ws = new WebSocket('wss://latchtuflutterws.azurewebsites.net/ws');
       ws.onopen = () => {
         console.log('Connection opened!');
@@ -101,6 +99,7 @@ async def websocket_endpoint(websocket: WebSocket):
         try:
           data = await websocket.receive_text()
           await manager.broadcast({data})
+          
         except Exception as e:
           print('error: ', e)
           break
