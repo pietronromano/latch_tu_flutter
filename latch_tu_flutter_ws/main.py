@@ -40,8 +40,8 @@ html = """
         ws.close();
       }
 
-      ws = new WebSocket('ws://localhost:8001/ws');
-      //ws = new WebSocket('wss://latchtuflutterws.azurewebsites.net/ws');
+      //ws = new WebSocket('ws://localhost:8001/ws');
+      ws = new WebSocket('wss://latchtuflutterws.azurewebsites.net/ws');
       ws.onopen = () => {
         console.log('Connection opened!');
       }
