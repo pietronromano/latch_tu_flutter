@@ -40,7 +40,7 @@ See this link for a general example on dpeloying an App with ACR:
 https://learn.microsoft.com/en-us/azure/app-service/tutorial-custom-container?tabs=azure-portal&pivots=container-linux
 
 
-## Create an ACR
+### Create an ACR
 ```
 az acr create --name <registry-name> --resource-group  latchtuflutter-rg  --sku Basic --admin-enabled true
 az acr credential show --resource-group latchtuflutter-rg --name <registry-name>
@@ -49,10 +49,10 @@ az acr credential show --resource-group  latchtuflutter-rg --name <registry-name
 docker login <registry-name>.azurecr.io --username <registry-username>
 ```
 
-## Create a User-Assigned Managed Identity
+### Create a User-Assigned Managed Identity
 az identity create --name myID --resource-group  latchtuflutter-rg
 
-## Docker Image
+### Docker Image
 Use the commands below to build and run the FastAPI in a Docker image: Specify platform to avoid "no matching manifest for linux/amd64"
 ```
 docker build -t latchtuflutter --platform linux/x86_64 . 
@@ -60,14 +60,14 @@ docker build -t latchtuflutter --platform linux/x86_64 .
 docker run -p 8001:8001 latchtuflutter  --name latchtuflutter
 ```
 
-## Azure Container Registry:
+### Azure Container Registry:
 ```
 az acr login -n latchtuflutter
 docker tag latchtuflutter latchtuflutter.azurecr.io/latchtuflutter:v1
 docker push latchtuflutter.azurecr.io/latchtuflutter:v1
 ```
 
-## Create the Web App
+### Create the Web App
 ```
 az appservice plan create --name latchtuflutterPlan --resource-group latchtuflutter-rg --is-linux
 az webapp create --resource-group latchtuflutter-rg --plan latchtuflutterPlan --name latchtuflutterws--deployment-container-image-name <registry-name>.azurecr.io/latchtuflutter:v1
