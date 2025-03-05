@@ -40,8 +40,8 @@ html = """
         ws.close();
       }
 
-      //ws = new WebSocket('ws://localhost:8001/ws');
-      ws = new WebSocket('wss://latchtuflutterws.azurewebsites.net/ws');
+      ws = new WebSocket('ws://localhost:8001/ws');
+      //ws = new WebSocket('wss://latchtuflutterws.azurewebsites.net/ws');
       ws.onopen = () => {
         console.log('Connection opened!');
       }
@@ -100,7 +100,7 @@ async def websocket_endpoint(websocket: WebSocket):
     while True:
         try:
           data = await websocket.receive_text()
-          await manager.broadcast("Message received: " + data)
+          await manager.broadcast({data})
         except Exception as e:
           print('error: ', e)
           break
