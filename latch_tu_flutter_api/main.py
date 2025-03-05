@@ -1,13 +1,14 @@
 from fastapi import FastAPI, Header, Request
+from fastapi.responses import HTMLResponse
 from typing import Annotated
 import uvicorn
 
 import latchsrc.latchmain as latchmain
 import os
 
+
 API_KEY = os.environ.get("API_KEY")
 app = FastAPI()
-
 
 
 ########################### LATCH ###########
@@ -86,6 +87,76 @@ async def operation(account_id: str, x_api_key: Annotated[str, Header()] = None)
 
 
 
+###########################
+# Websockets url: local (ws = new WebSocket('ws://localhost:8001/ws');) 
+# Azure: wss://latchtuflutterws.azurewebsites.net/ws
+html = """
+<h1>Real Time Messaging</h1>
+<pre id="messages" style="height: 400px; overflow: scroll"></pre>
+<input type="text" id="messageBox" placeholder="Type your message here" style="display: block; width: 100%; margin-bottom: 10px; padding: 10px;" />
+<button id="send" title="Send Message!" style="width: 100%; height: 30px;">Send Message</button>
+
+<script>
+  (function() {
+    const sendBtn = document.querySelector('#send');
+    const messages = document.querySelector('#messages');
+    const messageBox = document.querySelector('#messageBox');
+
+    let ws;
+
+    function showMessage(message) {
+      messages.textContent += `\n\n${message}`;
+      messages.scrollTop = messages.scrollHeight;
+      messageBox.value = '';
+    }
+
+    function init() {
+      var opened = false;
+      if (ws) {
+        ws.onerror = ws.onopen = ws.onclose = null;
+        ws.close();
+      }
+
+      //ws = new WebSocket('ws://localhost:8001/ws');
+      ws = new WebSocket('wss://latchtuflutterws.azurewebsites.net/ws');
+      ws.onopen = () => {
+        console.log('Connection opened!');
+        opened = true;
+      }
+
+      setInterval(function () { 
+          if(opened) {
+            console.log('Pinging');
+            ws.send("ping");
+          }
+        }, 10000);
+
+      ws.onmessage = ({ data }) => showMessage(data);
+      ws.onclose = function() {
+        ws = null;
+      }
+      ws.onerror = function(error) {
+        console.log(error);
+      }
+    }
+
+    sendBtn.onclick = function() {
+      if (!ws) {
+        showMessage("No WebSocket connection :(");
+        return ;
+      }
+
+      ws.send(messageBox.value);
+    }
+
+    init();
+  })();
+</script>
+"""
+
+@app.get("/")
+async def get():
+    return HTMLResponse(html)
 ###########################
 
 if __name__ == '__main__':

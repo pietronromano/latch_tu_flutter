@@ -7,7 +7,7 @@ https://github.com/Azure/app-service-linux-docs/blob/master/HowTo/WebSockets/use
 from fastapi import FastAPI, WebSocket, Request
 from fastapi.responses import HTMLResponse, PlainTextResponse
 from connections import manager
-import uvicorn
+
 
 app = FastAPI()
 
@@ -34,15 +34,19 @@ html = """
     }
 
     function init() {
+      var opened = false;
       if (ws) {
         ws.onerror = ws.onopen = ws.onclose = null;
         ws.close();
       }
 
+      //ws = new WebSocket('ws://localhost:8001/ws');
       ws = new WebSocket('wss://latchtuflutterws.azurewebsites.net/ws');
       ws.onopen = () => {
         console.log('Connection opened!');
+        opened = true;
       }
+
       ws.onmessage = ({ data }) => showMessage(data);
       ws.onclose = function() {
         ws = null;
