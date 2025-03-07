@@ -12,11 +12,21 @@ class WebHookScreen extends StatefulWidget {
 class _WebHookScreenState extends State<WebHookScreen> {
   final TextEditingController _controller = TextEditingController();
 
-  //final WebSocketChannel _channel = globals.channel;
   final WebSocketChannel _channel =
       WebSocketChannel.connect(Uri.parse('wss://${globals.wsURL}/ws'));
-  //    WebSocketChannel.connect(Uri.parse('ws://localhost:8001/ws'));
+  //WebSocketChannel.connect(Uri.parse('ws://localhost:8001/ws'));
   // PUBLIC TESTER:  WebSocketChannel.connect(Uri.parse('wss://echo.websocket.events'));
+
+  void _sendMessage() {
+    if (_controller.text.isNotEmpty) {
+      try {
+        _channel.sink.add(_controller.text);
+      } catch (e, s) {
+        print(e);
+        print(s);
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -51,15 +61,14 @@ class _WebHookScreenState extends State<WebHookScreen> {
     );
   }
 
-  void _sendMessage() {
-    if (_controller.text.isNotEmpty) {
-      _channel.sink.add(_controller.text);
-    }
-  }
-
   @override
   void dispose() {
-    _channel.sink.close();
+    try {
+      _channel.sink.close();
+    } catch (e, s) {
+      print(e);
+      print(s);
+    }
     _controller.dispose();
     super.dispose();
   }

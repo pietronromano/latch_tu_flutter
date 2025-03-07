@@ -10,6 +10,3 @@ String apiKeyHeader = 'x-api-key';
 String wsURL = 'latchtuflutterWS.azurewebsites.net';
 
 String accountId = '';
-
-final WebSocketChannel channel =
-    WebSocketChannel.connect(Uri.parse('wss://$wsURL/ws'));

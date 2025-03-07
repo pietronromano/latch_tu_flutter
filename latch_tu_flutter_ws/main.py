@@ -7,6 +7,7 @@ https://github.com/Azure/app-service-linux-docs/blob/master/HowTo/WebSockets/use
 from fastapi import FastAPI, WebSocket, Request
 from fastapi.responses import HTMLResponse, PlainTextResponse
 from connections import manager
+import uvicorn
 
 
 app = FastAPI()
@@ -107,3 +108,8 @@ async def websocket_endpoint(websocket: WebSocket):
         except Exception as e:
           print('error: ', e)
           break
+
+###############################
+
+if __name__ == '__main__':
+    uvicorn.run('main:app', host='0.0.0.0', port=8001)

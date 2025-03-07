@@ -11,6 +11,13 @@ class ConnectionManager():
 
     async def broadcast(self, message: str):
         for connection in self.active_connections:
-            await connection.send_text(message)
+            if connection.client_state.value == 1:
+                print("Sending: connection open: " + str(message))
+                await connection.send_text(message)
+            else:
+                print("Not sending: connection closed")
+                # CAUSED MISSING CALLS: self.active_connections.remove(connection)
+
+        
 
 manager = ConnectionManager()
